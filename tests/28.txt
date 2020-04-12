@@ -1,0 +1,4 @@
+DEF MAIN { ADDTHREE(0) } ;
+DEF ADDTHREE x { ADDTWO(x)+ADDONE(x) } ;
+DEF ADDTWO x { ADDONE(x)+ADDONE(x) } ;
+DEF ADDONE x { x+1 } ;

@@ -1,0 +1,2 @@
+DEF MAIN { 1+ADDFOUR(2+ADDFOUR(3)) } ;
+DEF ADDFOUR x { x+4 } ;

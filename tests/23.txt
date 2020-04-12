@@ -1,0 +1,2 @@
+DEF MAIN { A(1) } ;
+DEF A x { A(x) } ;

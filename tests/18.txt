@@ -1,0 +1,1 @@
+DEF ABCD x { x+1 } ;

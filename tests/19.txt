@@ -1,0 +1,3 @@
+DEF MAIN { ABCD(1) } ;
+DEF ABCD x { x+1 } ;
+DEF ABCD x { x+1 } ;

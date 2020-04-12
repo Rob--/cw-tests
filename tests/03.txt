@@ -1,0 +1,2 @@
+DEF MAIN { 2 } ;
+DEF DEF { 1 } ;

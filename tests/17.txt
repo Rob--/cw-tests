@@ -1,0 +1,6 @@
+DEF BCD xy { 2*CD(xy) } ;
+DEF ABCD xyz { BCD(xyz) } ;
+DEF CD x { D(x)+EF(x) } ;
+DEF MAIN { ABCD(1) } ;
+DEF D x { 10 } ;
+DEF EF x { 10*x } ;

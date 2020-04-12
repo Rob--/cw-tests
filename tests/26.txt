@@ -1,0 +1,6 @@
+DEF MAIN { A(1) } ;
+DEF A x { B(x) } ;
+DEF B x { C(x) } ;
+DEF C x { D(x)*E(x) } ;
+DEF D x { x+3 } ;
+DEF E x { D(x)+D(D(D(x)+D(D(x)+C(x)))) } ;

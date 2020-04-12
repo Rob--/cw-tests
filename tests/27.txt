@@ -1,0 +1,3 @@
+DEF QQ yy { 2*PP(yy)+3*QQ(yy) } ;
+DEF PP xx { QQ(xx)+3 } ;
+DEF MAIN { PP(0)+3 } ;
