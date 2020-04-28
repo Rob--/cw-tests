@@ -1,2 +1,2 @@
-DEF MAIN x { ABCD(1) } ;
+DEF MAIN { ABCD(1) } ;
 DEF ABCD x {  } ;
