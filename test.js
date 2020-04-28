@@ -2,12 +2,13 @@ const fs = require('fs');
 const { exec } = require('child_process');
 const solutions = require('./solutions');
 
-const shell = (cmd, verify) => {
+const shell = (cmd, verifyOut, verifyErr) => {
   return new Promise((resolve, reject) => {
       exec(cmd, (error, stdout, stderr) => resolve({
-          success: verify(stdout.replace(/\r/g, '')),
+          success: verifyOut(stdout.replace(/\r/g, '')) && verifyErr(stderr.replace(/\r/g, '')),
           stdout: stdout.replace(/\r/g, ''),
-          error, stderr,
+          stderr: stderr.replace(/\r/g, ''),
+          error,
       }));
   });
 };
@@ -15,7 +16,8 @@ const shell = (cmd, verify) => {
 const main = async () => {
     let success = await shell(
         'javacc ./src.jj',
-        stdout => stdout.indexOf('Parser generated successfully.') > -1
+        stdout => stdout.indexOf('Parser generated successfully.') > -1,
+        () => true,
     );
 
     if (!success) {
@@ -24,13 +26,14 @@ const main = async () => {
 
     console.log('Parser compiled...');
 
-    (success = await shell('javac *.java', stdout => stdout === ''));
+    (success = await shell('javac *.java', stdout => stdout === '', () => true));
 
     if (!success) {
         return;
     }
 
     console.log('Java files compiled...');
+    console.log(`${'File'.padEnd(10, ' ')} Status      ${'Expected'.padEnd(30, ' ')} ${'Got'.padEnd(30, '')}`)
 
     if (process.argv.length === 4) {
         fs.readdirSync('./tests').map(runTest);
@@ -42,10 +45,17 @@ const main = async () => {
 const runTest = async (file) => {
     const { success, error, stdout, stderr } = await shell(
       `java ${process.argv[2]} <tests/${file}`,
-        stdout => stdout.split('\n').filter(e => e).join('') === solutions[file].join('')
+        stdouta => stdouta.split('\n').filter(e => e).join('') === solutions[file][0].join(''),
+        stderra => stderra.split('\n').filter(e => e)[0] === solutions[file][1],
     );
 
-    console.log(`${file}: ${success ? 'SUCCESS' : 'FAILURE'} > expected: ${solutions[file]}, got: ${stdout.split('\n').filter(e  => e)}`)
+    const expected = [].concat.apply([], solutions[file]);
+    const got = [
+      ...stdout.split('\n').filter(e => e),
+      ...stderr.split('\n').filter((e, index) => e && index === 0),
+    ];
+
+    console.log(`${file.padEnd(10, ' ')} ${success ? 'SUCCESS' : 'FAILURE'}     ${expected.join(', ').padEnd(30, ' ')} ${got.join(', ').padEnd(30, ' ')}`)
 
     if (process.argv.length === 3 && !success) {
         if (error) console.log(error);
