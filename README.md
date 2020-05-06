@@ -1,3 +1,7 @@
+Type `npm install chalk` before running for the first time.
+
+---
+
 1. Paste your `.jj` file into the directory and rename it `src.jj` (the script will compile it)
 2. Run the program and pass the entry point:
 ```

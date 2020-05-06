@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { exec } = require('child_process');
+const chalk = require('chalk');
 const solutions = require('./solutions');
 
 const shell = (cmd, verifyOut, verifyErr) => {
@@ -33,7 +34,8 @@ const main = async () => {
     }
 
     console.log('Java files compiled...');
-    console.log(`${'File'.padEnd(10, ' ')} Status      ${'Expected'.padEnd(30, ' ')} ${'Got'.padEnd(30, '')}`)
+    console.log(chalk.black.bgYellow(`${'File'.padEnd(10, ' ')} Status      ${'Expected'.padEnd(30, ' ')} ${'Got'.padEnd(30, ' ')}`));
+    console.log(chalk.black.bgYellow(''.padEnd(10 + 13 + 30 + 1 + 30, '-')));
 
     if (process.argv.length === 4) {
         fs.readdirSync('./tests').map(runTest);
@@ -55,7 +57,7 @@ const runTest = async (file) => {
       ...stderr.split('\n').filter((e, index) => e && index === 0),
     ];
 
-    console.log(`${file.padEnd(10, ' ')} ${success ? 'SUCCESS' : 'FAILURE'}     ${expected.join(', ').padEnd(30, ' ')} ${got.join(', ').padEnd(30, ' ')}`)
+    console.log(`${chalk.cyan(`${file} > `.padEnd(10, ' '))} ${success ? chalk.green('SUCCESS') : chalk.red('FAILURE')}     ${ success ? chalk.black.bgGreen(`${expected.join(', ').padEnd(30, ' ')} ${got.join(', ').padEnd(30, ' ')}`) : chalk.black.bgRed(`${expected.join(', ').padEnd(30, ' ')} ${got.join(', ').padEnd(30, ' ')}`) }`)
 
     if (process.argv.length === 3 && !success) {
         if (error) console.log(error);

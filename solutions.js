@@ -14,7 +14,7 @@ module.exports = {
     "13.txt": [["FAIL"], "2"], // contains parenthesis where a function is not called
     "14.txt": [["FAIL"], "2"], // function body is empty
     "15.txt": [["FAIL"], "2"], // call to non-existent function
-    "16.txt": [["PASS", "40"]], // same as 2.txt, different function order definition
+    "16.txt": [["PASS", "40 "]], // same as 2.txt, different function order definition
     "17.txt": [["PASS", "40"]], // same as 2.txt, different function order definition
     "18.txt": [["FAIL"], "0"], // MAIN is not defined
     "19.txt": [["FAIL"], "3"], // same function is defined twice
