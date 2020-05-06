@@ -1,0 +1,5 @@
+DEF MAIN { A(1) } ;
+DEF A x { B(B(B(C(D(x)))))+B(B(B(C(D(x)))))+B(B(B(C(D(x)))))+B(B(B(C(D(x))))) } ;
+DEF B x { C(C(x)+C(x)) } ;
+DEF C x { D(D(x)+x) } ;
+DEF D x { x+x+x*2+x*x*2+2 } ;

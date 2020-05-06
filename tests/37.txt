@@ -1,0 +1,2 @@
+DEF MAIN { B(B(B(B(1)))) } ;
+DEF B x { x } ;

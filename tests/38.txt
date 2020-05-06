@@ -1,0 +1,4 @@
+DEF A x { B(C(x)) } ;
+DEF B x { x } ;
+DEF C x { A(x) } ;
+DEF MAIN { A(0) } ;

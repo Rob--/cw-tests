@@ -34,4 +34,10 @@ module.exports = {
     "33.txt": [["FAIL"], "1"], // syntax error
     "34.txt": [["FAIL"], "2"], // syntax error
     "35.txt": [["FAIL"], "4"], // syntax error
+    "36.txt": [["PASS", "2"]],
+    "37.txt": [["PASS", "1"]],
+    "38.txt": [["PASS", "DIVERGENCE"]], // recursion,
+    "39.txt": [["FAIL"], "1"],
+    "40.txt": [["PASS", "216"]],
+    "41.txt": [["PASS", "2041739400"]],
 };
