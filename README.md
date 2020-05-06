@@ -11,3 +11,7 @@ The target is the name of the main class, so instead of doing this: `java Parser
 Test it with this Node program by doing this: `node test Parser`
 
 To suppress error output and speed demon all the tests asynchronously: `node test Parser fast`
+
+---
+
+The script compiles your ``src.jj`` file via the ``javacc`` command. If you have not set the PATH environmental variable or wish to use a different command to compile it, go into [test.js](https://github.com/Rob--/cw-tests/blob/master/test.js#L18) and modify the call to ``javacc``.
